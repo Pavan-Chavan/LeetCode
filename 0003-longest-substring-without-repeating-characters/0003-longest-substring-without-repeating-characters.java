@@ -11,7 +11,7 @@ class Solution {
                }
            }
            set.add(s.charAt(r));
-           maxans = Math.max(maxans,set.size());
+           maxans = Math.max(maxans,r-l+1);
        }
        return maxans;
     }
