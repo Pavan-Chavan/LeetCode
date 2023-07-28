@@ -4,12 +4,13 @@ class Solution {
         int result[] = new int[2];
 
         while(left<right) {
-            if(numbers[left] + numbers[right] == target) {
+            int sum = numbers[left] + numbers[right];
+            if(sum == target) {
                 result[0] = left+1;
                 result[1] = right+1;
                 break;
             }
-            if(target-numbers[left] < numbers[right]) {
+            if(sum > target) {
                 right--;
             } else {
                 left++;
