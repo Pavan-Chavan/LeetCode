@@ -1,23 +1,20 @@
 class Solution {
-    public int[] twoSum(int[] nums, int target) {
-        int p1 = 0;
-        int p2 = nums.length-1;
-        int[] ans = new int[2];
-        
-        while(p1 < p2){
-            int sum = nums[p1]+nums[p2];     
-            if(sum == target){
-                ans[0] = p1+1;
-                ans[1] = p2+1;
+    public int[] twoSum(int[] numbers, int target) {
+        int left=0,right=numbers.length-1;
+        int result[] = new int[2];
+
+        while(left<right) {
+            if(numbers[left] + numbers[right] == target) {
+                result[0] = left+1;
+                result[1] = right+1;
                 break;
             }
-            else if(sum > target){
-                p2--;
-            }
-            else{
-                p1++;
+            if(target-numbers[left] < numbers[right]) {
+                right--;
+            } else {
+                left++;
             }
         }
-        return ans;
+        return result;
     }
 }
