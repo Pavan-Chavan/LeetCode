@@ -1,16 +1,15 @@
 class Solution {
     public List<List<Integer>> subsets(int[] nums) {
-        double limit = Math.pow(2,nums.length);
         List<List<Integer>> result = new ArrayList<>();
-        for(int i =0;i<limit;i++) {
-            List<Integer> temp = new ArrayList<>();
-            for( int j =0;j<nums.length;j++) {
-                if((i & (1<<j)) != 0) {
-                    temp.add(nums[j]);
-                }
-            }
-            result.add(temp);
-        }
+        helper(result,new ArrayList<>(), nums, 0);
         return result;
+    }
+    private void helper(List<List<Integer>> result, List<Integer> temp, int[] nums, int start) {
+        result.add(new ArrayList<>(temp));
+        for(int i=start;i<nums.length;i++) {
+            temp.add(nums[i]);
+            helper(result,temp, nums, i+1);
+            temp.remove(temp.size()-1);
+        }
     }
 }
