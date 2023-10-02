@@ -1,41 +1,45 @@
 class MyQueue {
-
+    Stack < Integer > input = new Stack < > ();
+    Stack < Integer > output = new Stack < > ();
     public MyQueue() {
         
     }
-    Stack<Integer> stk1 = new Stack<>();
-    Stack<Integer> stk2 = new Stack<>();
-
+    
     public void push(int x) {
-        while(!stk1.isEmpty())
-        {
-            stk2.push(stk1.pop());
+        while (input.empty() == false) {
+            output.push(input.peek());
+            input.pop();
         }
-        stk1.push(x);
-        while(!stk2.isEmpty())
-        {
-            stk1.push(stk2.pop());
+        // Insert the desired element in the stack input
+        System.out.println("The element pushed is " + x);
+        input.push(x);
+        // Pop out elements from the stack output and push them into the stack input
+        while (output.empty() == false) {
+            input.push(output.peek());
+            output.pop();
         }
     }
     
     public int pop() {
-        if(!stk1.isEmpty())
-        {
-            return stk1.pop();
+        if (input.empty()) {
+            System.out.println("Stack is empty");
+
         }
-        return -1;
+        int val = input.peek();
+        input.pop();
+        return val;
     }
     
     public int peek() {
-        if(!stk1.isEmpty())
-        {
-            return stk1.peek();
+        if (input.empty()) {
+            System.out.println("Stack is empty");
+
         }
-        return -1;
+        return input.peek();
     }
     
     public boolean empty() {
-        return stk1.isEmpty();
+        return input.size()==0;
     }
 }
 
